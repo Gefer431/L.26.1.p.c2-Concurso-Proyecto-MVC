@@ -1,0 +1,57 @@
+# Datos de prueba y resultados esperados - Concurso
+
+## 📥 Datos de entrada (12 aspirantes)
+
+| #  | Nombre     | Apellido  | Cédula | Sexo | Fecha Nacimiento | Pts Acad | Pts Prep | Pts Dipl |
+|----|------------|-----------|--------|------|------------------|----------|----------|----------|
+| 1  | Ana        | García    | 111    | F    | 1990-03-15       | 15       | 8        | 5        |
+| 2  | Luis       | Pérez     | 222    | M    | 2000-07-22       | 10       | 5        | 3        |
+| 3  | María      | López     | 333    | F    | 1985-11-02       | 20       | 10       | 8        |
+| 4  | Carlos     | Sánchez   | 444    | M    | 1995-01-10       | 8        | 4        | 2        |
+| 5  | Laura      | Ramírez   | 555    | F    | 1980-06-18       | 18       | 12       | 6        |
+| 6  | Pedro      | Gómez     | 666    | M    | 2005-12-05       | 12       | 6        | 4        |
+| 7  | Sofía      | Torres    | 777    | F    | 1998-09-25       | 5        | 3        | 1        |
+| 8  | Javier     | Castro    | 888    | M    | 1975-04-12       | 25       | 15       | 10       |
+| 9  | Valentina  | Ortiz     | 999    | F    | 2002-08-30       | 7        | 4        | 2        |
+| 10 | Diego      | Ruiz      | 0      | M    | 1992-12-14       | 22       | 13       | 9        |
+| 11 | Camila     | Méndez    | 123    | F    | 1988-07-19       | 3        | 2        | 1        |
+| 12 | Andrés     | Herrera   | 456    | M    | 1996-02-28       | 14       | 9        | 5        |
+
+
+
+---
+
+## 📤 Salidas esperadas
+
+### Tabla de resultados individuales
+
+| #  | Aspirante       | Edad (1/6/2024) | Puntaje total |
+|----|-----------------|------------------|---------------|
+| 1  | Ana García      | 34               | 30            |
+| 2  | Luis Pérez      | 23               | 28            |
+| 3  | María López     | 38               | 30            |
+| 4  | Carlos Sánchez  | 29               | 24            |
+| 5  | Laura Ramírez   | 44               | 30            |
+| 6  | Pedro Gómez     | 18               | 30            |
+| 7  | Sofía Torres    | 25               | 19            |
+| 8  | Javier Castro   | 49               | 30            |
+| 9  | Valentina Ortiz | 21               | 23            |
+| 10 | Diego Ruiz      | 31               | 30            |
+| 11 | Camila Méndez   | 35               | 11            |
+| 12 | Andrés Herrera  | 28               | 30            |
+
+---
+
+### Reportes agregados
+
+#### Durante el concurso (mejor hasta ahora)
+| Concepto                        | Resultado                                      |
+|---------------------------------|------------------------------------------------|
+| Mejor aspirante hasta ahora     | Ana García (30 puntos)                         |
+| Promedio de edad                | 31.17 años                                     |
+
+#### Resultado final (al terminar el concurso)
+| Concepto                        | Resultado                                                |
+|---------------------------------|----------------------------------------------------------|
+| Contratado                      | Ana García con 30 puntos                                 |
+| Promedio de edad final          | 31.17 años                                               |

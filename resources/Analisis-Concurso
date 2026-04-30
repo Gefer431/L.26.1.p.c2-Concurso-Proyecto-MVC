@@ -1,0 +1,47 @@
+# Análisis de CONCURSO
+
+## 1. Tabulación de datos
+
+- **Cl_mPersona (Base)**: Nombre, apellido, cédula, sexo (M-F), fecha de nacimiento (aaaa-mm-dd).
+- **Cl_mAspirante (Subclase)**: Índice académico (máx 25), puntos por preparador (máx 15), puntos por diplomas (máx 10).
+- **Cl_mConcurso (Modelo)**: Acumulador de puntos totales, récord de mayor puntaje y nombre del mejor aspirante.
+
+## 2. Requerimientos
+
+- Calcular la edad de cada aspirante (basado en fecha de nacimiento vs fecha actual).
+- Determinar los puntos por edad (10 si <30 años, 5 si <40 años, 0 otros).
+- Calcular el puntaje total (limitado a un máximo de 30 puntos según el enunciado).
+- Reportar los datos básicos de cada aspirante procesado.
+- Determinar quién es el aspirante con el mejor puntaje para su contratación.
+- Reportar el acumulado total de puntos de todos los aspirantes.
+- Reportar el promedio de edad de los aspirantes.
+
+## 3. Visualización de la salida
+
+- **R.1:** Listado/Tabla con Nombre, Apellido y Puntaje Total de cada aspirante.
+- **R.2:** Nombre del mejor aspirante y su puntaje.
+- **R.3:** Total de puntos acumulados en el concurso.
+- **R.4:** Mensaje de finalización indicando el aspirante contratado.
+- **R.5:** Promedio de edad de los aspirantes del concurso.
+
+## 4. Lógica de los métodos (Abstracción de Procesos)
+
+### Clase: `Cl_mAspirante`
+
+- **`calcularEdad()`**: Resta el año actual del año de nacimiento. Ajusta el resultado si el mes/día actual es anterior al del nacimiento.
+- **`puntosEdad()`**:
+  - Si edad < 30 → retorna 10.
+  - Si edad < 40 → retorna 5.
+  - Sino → retorna 0.
+- **`totalPuntos()`**: Suma `puntosAcademicos + puntosPreparador + puntosDiplomas + puntosEdad()`. Si el resultado > 30, lo limita a 30.
+
+### Clase: `Cl_mConcurso`
+
+- **`procesarAspirante(aspi)`**:
+  1. Obtiene el total de puntos del aspirante: `puntos = aspi.totalPuntos()`.
+  2. Suma al acumulador general: `acPuntosTotal += puntos`.
+  3. Acumula las edades: `acEdades += aspi.calcularEdad()`.
+  4. Incrementa contador de aspirantes: `cntAspirantes++`.
+  5. **Determinar mejor**: Si `puntos > mayorPuntos`, actualiza `mayorPuntos = puntos` y `mejorAspiranteNombre = nombre + apellido`.
+- **`promedioEdad()`**: Retorna `acEdades / cntAspirantes`.
+
