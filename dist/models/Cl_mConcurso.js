@@ -1,25 +1,22 @@
 export default class Cl_mConcurso {
     constructor() {
-        this.acPuntosTotal = 0;
-        this.mayorPuntos = -1;
-        this.mejorAspiranteNombre = "";
+        this.mejorNombre = "";
+        this.mejorPuntaje = -1;
         this.acEdades = 0;
         this.cntAspirantes = 0;
     }
     procesarAspirante(aspi) {
-        const puntos = aspi.totalPuntos();
-        const edad = aspi.calcularEdad();
-        this.acPuntosTotal += puntos;
+        const puntos = aspi.puntaje();
+        const edad = aspi.edad();
         this.acEdades += edad;
         this.cntAspirantes++;
-        if (puntos > this.mayorPuntos) {
-            this.mayorPuntos = puntos;
-            this.mejorAspiranteNombre = `${aspi.nombre} ${aspi.apellido}`;
+        if (puntos > this.mejorPuntaje) {
+            this.mejorPuntaje = puntos;
+            this.mejorNombre = `${aspi.nombre} ${aspi.apellido}`;
         }
     }
-    MayorPuntos() { return this.mayorPuntos; }
-    MejorAspiranteNombre() { return this.mejorAspiranteNombre; }
-    TotalPuntosAcumulados() { return this.acPuntosTotal; }
+    obtenerMejorNombre() { return this.mejorNombre; }
+    obtenerMejorPuntaje() { return this.mejorPuntaje; }
     promedioEdad() {
         return this.cntAspirantes === 0 ? 0 : this.acEdades / this.cntAspirantes;
     }

@@ -7,7 +7,6 @@ export default class Cl_cConcurso {
         this.vistaPrincipal = vistaConcurso;
         this.controladorAspirante = new Cl_cAspirante(vistaAspirante);
         this.vistaPrincipal.onNuevoAspirante(() => this.procesarAspirante());
-        this.vistaPrincipal.onTerminar(() => this.terminarConcurso());
         this.cargarDatosIniciales();
         this.actualizarVista();
     }
@@ -19,31 +18,28 @@ export default class Cl_cConcurso {
             }
         });
     }
-    terminarConcurso() {
-        this.vistaPrincipal.reportarFinal(this.modelo.MejorAspiranteNombre(), this.modelo.MayorPuntos(), this.modelo.promedioEdad());
-    }
     actualizarVista() {
-        this.vistaPrincipal.reportarMejor(this.modelo.MejorAspiranteNombre(), this.modelo.MayorPuntos(), this.modelo.promedioEdad());
+        const mejorNombre = this.modelo.obtenerMejorNombre();
+        const mejorPuntos = this.modelo.obtenerMejorPuntaje();
+        const promedio = this.modelo.promedioEdad();
+        this.vistaPrincipal.reportarMejor(mejorNombre, mejorPuntos, promedio);
+        this.vistaPrincipal.reportarFinal(mejorNombre, mejorPuntos, promedio);
     }
     cargarDatosIniciales() {
         const datos = [
-            ["Ana", "García", "111", "F", "1990-03-15", 15, 8, 5],
-            ["Luis", "Pérez", "222", "M", "2000-07-22", 10, 5, 3],
-            ["María", "López", "333", "F", "1985-11-02", 20, 10, 8],
-            ["Carlos", "Sánchez", "444", "M", "1995-01-10", 8, 4, 2],
-            ["Laura", "Ramírez", "555", "F", "1980-06-18", 18, 12, 6],
-            ["Pedro", "Gómez", "666", "M", "2005-12-05", 12, 6, 4],
-            ["Sofía", "Torres", "777", "F", "1998-09-25", 5, 3, 1],
-            ["Javier", "Castro", "888", "M", "1975-04-12", 25, 15, 10],
-            ["Valentina", "Ortiz", "999", "F", "2002-08-30", 7, 4, 2],
-            ["Diego", "Ruiz", "000", "M", "1992-12-14", 22, 13, 9],
-            ["Camila", "Méndez", "123", "F", "1988-07-19", 3, 2, 1],
-            ["Andrés", "Herrera", "456", "M", "1996-02-28", 14, 9, 5]
+            ["Ana", "Gil", "8888", "F", "2001-06-15", 11, 5, 0],
+            ["Mery", "Paz", "6666", "F", "1999-07-25", 4, 0, 7],
+            ["Juan", "Sanz", "9999", "M", "1980-09-20", 7, 12, 0],
+            ["Paty", "Ortiz", "3333", "F", "1970-05-14", 18, 0, 5],
+            ["Liz", "Ramos", "2222", "F", "2005-01-03", 17, 8, 5],
+            ["Raul", "Mendez", "5555", "M", "1995-10-11", 7, 15, 1],
+            ["Tony", "Flores", "7777", "M", "1999-08-07", 5, 6, 7],
+            ["Gaby", "Lopez", "1111", "F", "1966-07-19", 17, 3, 6]
         ];
         for (const d of datos) {
             const aspirante = new Cl_mAspirante(d[0], d[1], d[2], d[3], new Date(d[4]), d[5], d[6], d[7]);
             this.modelo.procesarAspirante(aspirante);
-            this.controladorAspirante["vista"].agregarAFila(aspirante.nombre, aspirante.apellido, aspirante.totalPuntos());
+            this.controladorAspirante["vista"].agregarAFila(aspirante.nombre, aspirante.apellido, aspirante.cedula, aspirante.sexo, aspirante.fechaNac.toISOString().split('T')[0], aspirante.edad(), aspirante.puntosIA, aspirante.puntosPrep, aspirante.puntosDiplomas, aspirante.puntosEdad(), aspirante.puntosSubTotal(), aspirante.puntaje());
         }
     }
 }

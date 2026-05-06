@@ -5,10 +5,10 @@ export default class Cl_vAspirantePlain implements I_vAspirante {
     private inApellido: HTMLInputElement;
     private inCedula: HTMLInputElement;
     private inSexo: HTMLInputElement;
-    private inFechaNacimiento: HTMLInputElement;
-    private inPuntosAcademicos: HTMLInputElement;
-    private inPuntosPreparador: HTMLInputElement;
-    private inPuntosDiplomas: HTMLInputElement;
+    private inFechaNac: HTMLInputElement;
+    private inPuntosIA: HTMLInputElement;
+    private inPuntosPrep: HTMLInputElement;
+    private inPuntosDip: HTMLInputElement;
     private btnAceptar: HTMLButtonElement;
     private btnCancelar: HTMLButtonElement;
     private formulario: HTMLElement;
@@ -21,10 +21,10 @@ export default class Cl_vAspirantePlain implements I_vAspirante {
         this.inApellido = document.getElementById("aspirante_inApellido") as HTMLInputElement;
         this.inCedula = document.getElementById("aspirante_inCedula") as HTMLInputElement;
         this.inSexo = document.getElementById("aspirante_inSexo") as HTMLInputElement;
-        this.inFechaNacimiento = document.getElementById("aspirante_inFechaNac") as HTMLInputElement;
-        this.inPuntosAcademicos = document.getElementById("aspirante_inPuntosAcad") as HTMLInputElement;
-        this.inPuntosPreparador = document.getElementById("aspirante_inPuntosPrep") as HTMLInputElement;
-        this.inPuntosDiplomas = document.getElementById("aspirante_inPuntosDip") as HTMLInputElement;
+        this.inFechaNac = document.getElementById("aspirante_inFechaNac") as HTMLInputElement;
+        this.inPuntosIA = document.getElementById("aspirante_inPuntosIA") as HTMLInputElement;
+        this.inPuntosPrep = document.getElementById("aspirante_inPuntosPrep") as HTMLInputElement;
+        this.inPuntosDip = document.getElementById("aspirante_inPuntosDip") as HTMLInputElement;
         this.btnAceptar = document.getElementById("aspirante_btAceptar") as HTMLButtonElement;
         this.btnCancelar = document.getElementById("aspirante_btCancelar") as HTMLButtonElement;
         this.mensajeDiv = document.getElementById("mensaje") as HTMLElement;
@@ -36,10 +36,10 @@ export default class Cl_vAspirantePlain implements I_vAspirante {
     get apellido(): string { return this.inApellido.value.trim(); }
     get cedula(): string { return this.inCedula.value.trim(); }
     get sexo(): string { return this.inSexo.value.trim().toUpperCase(); }
-    get fechaNacimiento(): string { return this.inFechaNacimiento.value; }
-    get puntosAcademicos(): number { return +this.inPuntosAcademicos.value || 0; }
-    get puntosPreparador(): number { return +this.inPuntosPreparador.value || 0; }
-    get puntosDiplomas(): number { return +this.inPuntosDiplomas.value || 0; }
+    get fechaNacimiento(): string { return this.inFechaNac.value; }
+    get puntosIA(): number { return +this.inPuntosIA.value || 0; }
+    get puntosPrep(): number { return +this.inPuntosPrep.value || 0; }
+    get puntosDiplomas(): number { return +this.inPuntosDip.value || 0; }
 
     onAceptar(callback: () => void): void { this.btnAceptar.onclick = callback; }
     onCancelar(callback: () => void): void { this.btnCancelar.onclick = callback; }
@@ -58,10 +58,10 @@ export default class Cl_vAspirantePlain implements I_vAspirante {
         this.inApellido.value = "";
         this.inCedula.value = "";
         this.inSexo.value = "";
-        this.inFechaNacimiento.value = "";
-        this.inPuntosAcademicos.value = "";
-        this.inPuntosPreparador.value = "";
-        this.inPuntosDiplomas.value = "";
+        this.inFechaNac.value = "";
+        this.inPuntosIA.value = "";
+        this.inPuntosPrep.value = "";
+        this.inPuntosDip.value = "";
         this.mostrarMensaje("");
     }
 
@@ -69,9 +69,27 @@ export default class Cl_vAspirantePlain implements I_vAspirante {
         if (this.mensajeDiv) this.mensajeDiv.textContent = texto;
     }
 
-    agregarAFila(nombre: string, apellido: string, puntos: number): void {
+    agregarAFila(
+        nombre: string, apellido: string, cedula: string, sexo: string,
+        fechaNac: string, edad: number,
+        puntosIA: number, puntosPrep: number, puntosDiplomas: number,
+        puntosEdad: number, puntosSubTotal: number, puntaje: number
+    ): void {
         const fila = document.createElement("tr");
-        fila.innerHTML = `<tr>${nombre}</td><td class="text-center">${apellido}</td><td class="text-center">${puntos}</td>`;
+        fila.innerHTML = `
+            <td>${nombre}</td>
+            <td>${apellido}</td>
+            <td>${cedula}</td>
+            <td>${sexo}</td>
+            <td>${fechaNac}</td>
+            <td>${edad}</td>
+            <td>${puntosIA}</td>
+            <td>${puntosPrep}</td>
+            <td>${puntosDiplomas}</td>
+            <td>${puntosEdad}</td>
+            <td>${puntosSubTotal}</td>
+            <td>${puntaje}</td>
+        `;
         this.tablaBody.appendChild(fila);
     }
 }

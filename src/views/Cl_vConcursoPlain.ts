@@ -2,7 +2,6 @@
 
 export default class Cl_vConcursoPlain implements I_vConcurso {
     private btnNuevo: HTMLButtonElement;
-    private btnTerminar: HTMLButtonElement;
     private lblMejor: HTMLElement;
     private lblFinal: HTMLElement;
     private lblPromEdad: HTMLElement;
@@ -10,7 +9,6 @@ export default class Cl_vConcursoPlain implements I_vConcurso {
 
     constructor() {
         this.btnNuevo = document.getElementById("concurso_btNuevoAspirante") as HTMLButtonElement;
-        this.btnTerminar = document.getElementById("concurso_btTerminar") as HTMLButtonElement;
         this.lblMejor = document.getElementById("concurso_lblMejor") as HTMLElement;
         this.lblFinal = document.getElementById("concurso_lblFinal") as HTMLElement;
         this.lblPromEdad = document.getElementById("concurso_lblPromEdad") as HTMLElement;
@@ -21,16 +19,12 @@ export default class Cl_vConcursoPlain implements I_vConcurso {
         this.btnNuevo.onclick = callback;
     }
 
-    onTerminar(callback: () => void): void {
-        this.btnTerminar.onclick = callback;
-    }
-
     reportarMejor(nombre: string, puntos: number, promedioEdad: number): void {
         if (!nombre) {
             this.lblMejor.textContent = "Aún no hay aspirantes.";
             this.lblPromEdad.textContent = "0.0";
         } else {
-            this.lblMejor.textContent = `Mejor aspirante hasta ahora: ${nombre} (${puntos} puntos)`;
+            this.lblMejor.textContent = `${nombre} (${puntos} puntos)`;
             this.lblPromEdad.textContent = promedioEdad.toFixed(2);
         }
     }
@@ -40,7 +34,7 @@ export default class Cl_vConcursoPlain implements I_vConcurso {
             this.lblFinal.textContent = "No se registró ningún aspirante.";
             this.lblPromFinal.textContent = "0.0";
         } else {
-            this.lblFinal.textContent = `Concurso finalizado. Contratado: ${nombre} con ${puntos} puntos.`;
+            this.lblFinal.textContent = `Contratado: ${nombre} con ${puntos} puntos.`;
             this.lblPromFinal.textContent = promedioEdad.toFixed(2);
         }
     }

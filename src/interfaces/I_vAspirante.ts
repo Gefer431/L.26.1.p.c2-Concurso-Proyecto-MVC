@@ -4,8 +4,8 @@ export interface I_vAspirante {
     get cedula(): string;
     get sexo(): string;
     get fechaNacimiento(): string;
-    get puntosAcademicos(): number;
-    get puntosPreparador(): number;
+    get puntosIA(): number;
+    get puntosPrep(): number;
     get puntosDiplomas(): number;
 
     onAceptar(callback: () => void): void;
@@ -14,5 +14,12 @@ export interface I_vAspirante {
     ocultar(): void;
     limpiarFormulario(): void;
     mostrarMensaje(texto: string): void;
-    agregarAFila(nombre: string, apellido: string, puntos: number): void;
+
+    
+    agregarAFila(
+        nombre: string, apellido: string, cedula: string, sexo: string,
+        fechaNac: string, edad: number,
+        puntosIA: number, puntosPrep: number, puntosDiplomas: number,
+        puntosEdad: number, puntosSubTotal: number, puntaje: number
+    ): void;
 }
